@@ -1,0 +1,289 @@
+.timeline {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+  height: 240px;
+}
+
+.timeline-toolbar {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.timeline-toolbar-left {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.timeline-toolbar-center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+}
+
+.timeline-toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tl-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  transition: all 0.15s;
+}
+
+.tl-btn:hover:not(:disabled) {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.zoom-label {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.zoom-btn {
+  width: 22px;
+  height: 22px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s;
+  line-height: 1;
+}
+
+.zoom-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.zoom-slider {
+  width: 100px;
+  margin: 0;
+}
+
+.zoom-value {
+  font-size: 11px;
+  color: var(--text-muted);
+  min-width: 35px;
+  text-align: right;
+}
+
+.tl-info {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* Timeline body */
+.timeline-body {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.track-labels {
+  width: 60px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border);
+  z-index: 2;
+}
+
+.ruler-label {
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.track-label {
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  font-size: 10px;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+/* Scrollable area */
+.timeline-scroll-area {
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+  position: relative;
+}
+
+.timeline-content {
+  min-height: 100%;
+}
+
+/* Ruler */
+.ruler {
+  position: sticky;
+  top: 0;
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  z-index: 10;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.ruler:hover {
+  background: var(--bg-hover);
+}
+
+.ruler-tick {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.ruler-tick-line {
+  width: 1px;
+  height: 8px;
+  background: var(--border);
+}
+
+.ruler-tick-label {
+  font-size: 9px;
+  color: var(--text-muted);
+  margin-left: 2px;
+  white-space: nowrap;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+/* Tracks */
+.track {
+  position: relative;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-primary);
+  transition: background 0.1s;
+  overflow: hidden;
+}
+
+.track:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Clip blocks */
+.clip-block {
+  position: absolute;
+  border-radius: 4px;
+  background: hsl(calc(var(--clip-hue, 210)), 55%, 30%);
+  border: 1.5px solid hsl(calc(var(--clip-hue, 210)), 65%, 45%);
+  cursor: grab;
+  overflow: hidden;
+  transition: box-shadow 0.1s, border-color 0.1s;
+  display: flex;
+  align-items: flex-start;
+  user-select: none;
+}
+
+.clip-block:hover {
+  box-shadow: 0 0 0 1px hsl(calc(var(--clip-hue, 210)), 65%, 55%);
+}
+
+.clip-block.selected {
+  border-color: #fff;
+  box-shadow: 0 0 0 2px var(--accent);
+  z-index: 5;
+}
+
+.clip-block.tool-cut {
+  cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'><text y='16' font-size='16'>✂</text></svg>") 10 10, crosshair;
+}
+
+.clip-block:active {
+  cursor: grabbing;
+}
+
+.clip-label {
+  padding: 3px 6px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.9);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+.clip-resize-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  background: rgba(255, 255, 255, 0.25);
+  cursor: ew-resize;
+  z-index: 2;
+}
+
+.clip-resize-handle.left {
+  left: 0;
+  border-radius: 4px 0 0 4px;
+}
+
+.clip-resize-handle.right {
+  right: 0;
+  border-radius: 0 4px 4px 0;
+}
+
+/* Playhead */
+.playhead {
+  position: absolute;
+  top: 0;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.playhead-head {
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 10px solid #ff4444;
+  margin-left: -7px;
+}
+
+.playhead-line {
+  width: 1px;
+  background: rgba(255, 68, 68, 0.8);
+  margin-left: -0.5px;
+}
+
+.playhead.dragging .playhead-line {
+  background: #ff4444;
+}
