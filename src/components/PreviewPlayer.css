@@ -1,0 +1,135 @@
+.preview-player {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #111;
+  overflow: hidden;
+}
+
+.preview-canvas-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  background: #0d0d0d;
+  overflow: hidden;
+}
+
+.preview-canvas {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 2px;
+  background: #000;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+}
+
+.preview-controls {
+  padding: 8px 12px 10px;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.preview-seekbar-wrap {
+  cursor: pointer;
+  padding: 6px 0;
+  margin-bottom: 4px;
+}
+
+.preview-seekbar {
+  position: relative;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+}
+
+.preview-seekbar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.preview-seekbar-thumb {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+.preview-seekbar-wrap:hover .preview-seekbar {
+  height: 6px;
+}
+
+.preview-seekbar-wrap:hover .preview-seekbar-thumb {
+  width: 14px;
+  height: 14px;
+}
+
+.preview-buttons {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ctrl-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: var(--text-secondary);
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  transition: all 0.15s;
+}
+
+.ctrl-btn:hover:not(:disabled) {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.play-btn {
+  width: 36px;
+  height: 36px;
+  font-size: 15px;
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.play-btn:hover:not(:disabled) {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+  color: #fff;
+}
+
+.preview-time {
+  margin-left: auto;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.time-current {
+  color: var(--text-primary);
+}
+
+.time-sep {
+  color: var(--text-muted);
+}
+
+.time-total {
+  color: var(--text-secondary);
+}

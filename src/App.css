@@ -1,0 +1,21 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--bg-primary);
+  overflow: hidden;
+}
+
+.workspace {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+
+.center-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
